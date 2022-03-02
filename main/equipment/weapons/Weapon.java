@@ -42,4 +42,8 @@ public abstract class Weapon implements Equipment {
 		hitCount++;
 		
 	}
+	
+	public int getHitCount() {
+		return hitCount;
+	}
 }

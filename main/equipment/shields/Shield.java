@@ -1,7 +1,6 @@
 package equipment.shields;
 
 import equipment.Equipment;
-import equipment.weapons.Weapon;
 import tournament.Fighter;
 
 public abstract class Shield implements Equipment {
@@ -14,9 +13,9 @@ public abstract class Shield implements Equipment {
 	/** Return the number of damage after being hit */
 	public int getHit (Fighter fighter) {
 		
-		/** check if the shield is detroyed (return damage without blocking) */
+		/** check if the shield is destroyed (return damage without blocking) */
 		if(hitTaken>=hitBeforeBreaking) {
-			System.out.println("shield is broken");
+			//System.out.println("shield is broken");
 			return fighter.getDmg();
 		}
 		
@@ -24,12 +23,12 @@ public abstract class Shield implements Equipment {
 		 
 		 if(blockLastHit) {
 			 /** has blocked last hit, will not block this one*/
-			 System.out.println("shield doesn't block");
+			 //System.out.println("shield doesn't block");
 			 blockLastHit=false;
-			 return fighter.getDmg();
+			 return fighter.getModifiedDmg();
 		 } else {
 			 /** has not blocked last hit, will block this one*/
-			 System.out.println("shield block");
+			 //System.out.println("shield block");
 			 /** count the blow if the weapon can breake shield */ 
 			if(fighter.getWeapon().getCanBreakShield()) {
 				//System.out.println("shield take axe hit");

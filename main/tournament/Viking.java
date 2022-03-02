@@ -6,7 +6,7 @@ public class Viking extends Fighter {
 	
 	public Viking() {
 		this.setName("Viking");
-		hp=120;
+		this.setHp(120);
 		this.setEquipment("OneHandAxe");
 		
 	}
@@ -15,5 +15,12 @@ public class Viking extends Fighter {
 	public Viking equip(String equipmentType) {
 		this.setEquipment(equipmentType);
 		return this;
+	}
+	
+	public Viking(String skill) {
+		this.setName("Swordsman");
+		this.setHp(120);
+		this.setEquipment("OneHandAxe");
+		this.setEquipment(skill);
 	}
 }

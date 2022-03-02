@@ -4,13 +4,14 @@ import tournament.Viking;
 
 public class Main {
 	public static void main(String[] args) {
-		 Highlander highlander = new Highlander();
+		Swordsman swordsman = new Swordsman("Vicious")
+                .equip("axe")
+                .equip("buckler")
+                .equip("armor");
 
-	        Swordsman swordsman = new Swordsman()
-	                .equip("buckler")
-	                .equip("armor");
+        Highlander highlander = new Highlander("Veteran");
 
-	        swordsman.engage(highlander);
+        swordsman.engage(highlander);
 
         
         System.out.println("Fighter "+ swordsman.getName() + " hp " + swordsman.hitPoints());

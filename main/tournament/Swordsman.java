@@ -5,7 +5,7 @@ public class Swordsman extends Fighter {
 	
 	public Swordsman() {
 		this.setName("Swordsman");
-		hp=100;
+		this.setHp(100);
 		this.setEquipment("OneHandSword");
 		
 	}
@@ -14,6 +14,13 @@ public class Swordsman extends Fighter {
 	public Swordsman equip(String equipmentType) {
 		this.setEquipment(equipmentType);
 		return this;
+	}
+	
+	public Swordsman(String skill) {
+		this.setName("Swordsman");
+		this.setHp(100);
+		this.setEquipment("OneHandSword");
+		this.setEquipment(skill);
 	}
 
 }

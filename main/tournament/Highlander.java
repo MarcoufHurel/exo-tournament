@@ -7,10 +7,25 @@ package tournament;
  */
 public class Highlander extends Fighter {
 	
+	
+	
 	public Highlander() {
 		this.setName("Highlander");
-		hp=150;
+		this.setHp(150);
 		this.setEquipment("GreatSword");
+	}
+	
+	@Override
+	public Highlander equip(String equipmentType) {
+		this.setEquipment(equipmentType);
+		return this;
+	}
+	
+	public Highlander(String skill) {
+		this.setName("Highlander");
+		this.setHp(150);
+		this.setEquipment("GreatSword");
+		this.setEquipment(skill);
 	}
 
 }
