@@ -4,9 +4,16 @@ package tournament;
 public class Swordsman extends Fighter {
 	
 	public Swordsman() {
+		this.setName("Swordsman");
 		hp=100;
-		dmg=5;
+		this.setEquipment("OneHandSword");
 		
+	}
+	
+	@Override
+	public Swordsman equip(String equipmentType) {
+		this.setEquipment(equipmentType);
+		return this;
 	}
 
 }

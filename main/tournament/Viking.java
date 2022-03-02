@@ -5,8 +5,15 @@ package tournament;
 public class Viking extends Fighter {
 	
 	public Viking() {
+		this.setName("Viking");
 		hp=120;
-		dmg=6;
+		this.setEquipment("OneHandAxe");
 		
+	}
+	
+	@Override
+	public Viking equip(String equipmentType) {
+		this.setEquipment(equipmentType);
+		return this;
 	}
 }
