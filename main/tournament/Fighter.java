@@ -1,6 +1,7 @@
 package tournament;
 
 import equipment.Equipment;
+import equipment.armor.Armor;
 import equipment.shields.*;
 import equipment.weapons.*;
 import factory.EquipmentFactory;
@@ -11,7 +12,9 @@ public abstract class Fighter {
 	int hp;
 	Weapon weapon;
 	Shield shield;
+	Armor armor;
 	String name;
+	int tour=1;
 	
 	public void setName(String name) {
 		this.name=name;
@@ -32,7 +35,8 @@ public abstract class Fighter {
 			if(!ennemy.isDead()) {
 				ennemy.hit(this);
 			}
-			
+			System.out.println("tour " + tour + " " +  name + " " + hp + " "+ ennemy.getName() + " " + ennemy.hitPoints());
+			tour++;
 		}
 	}
 	
@@ -45,18 +49,35 @@ public abstract class Fighter {
 	
 	/** Give a blow to a fighter */ 
 	public void hit (Fighter ennemy) {
-		ennemy.getHit(weapon);
+		//System.out.println(name + " attack " + ennemy.getName());
+		weapon.hit();
+		ennemy.getHit(this);
 	
 	}
 	
 	/** Receives a blow */
-	public void getHit (Weapon weapon) {
-		System.out.println(name + " is hit");
-		if(shield != null) {
-			hp-=shield.getHit(weapon);
-		} else {
-		hp -= weapon.getDmg();
+	public void getHit (Fighter ennemi) {
+		int damageTaken=0;
+		
+		if(ennemi.getDmg()>0) {
+			if(shield != null) {
+				damageTaken+=shield.getHit(ennemi);
+			} else {
+				damageTaken+=ennemi.getDmg();
+			}
+			
+			if(armor != null) {
+				damageTaken-=armor.getDamageReduction();
+			}
 		}
+		if(damageTaken<=0) {
+			damageTaken=0;
+		}
+		//System.out.println(name + " take " + damageTaken);
+		
+		hp -= damageTaken;
+		//System.out.println(name + " HP " + hp);
+		
 	}
 	
 	/** Show HP (negative HP will be shown as 0 */
@@ -67,7 +88,7 @@ public abstract class Fighter {
 	
 	/** Equip the specified item */
 	public void setEquipment(String equipmentType) {
-		System.out.println("Fighter "+ name + " equip " + equipmentType);
+		System.out.println(name + " equip " + equipmentType);
 		
 		EquipmentFactory factory = new EquipmentFactory();
 		Equipment equipment = factory.create(equipmentType);
@@ -76,11 +97,44 @@ public abstract class Fighter {
 			weapon=(Weapon) equipment;			
 		} else if(equipment.GetType().equalsIgnoreCase("Shield")) {
 			shield=(Shield) equipment;			
+		} else if(equipment.GetType().equalsIgnoreCase("Armor")) {
+			armor=(Armor) equipment;			
 		}
 	}
 	
 	public Fighter equip(String equipmentType) {
 		this.setEquipment(equipmentType);
 		return this;
+	}
+	
+	/** return the damage that the fighter can deliver this round */
+	public int getDmg() {
+		int dmg=0;
+		
+		if(weapon != null) {
+			dmg=weapon.getDmg();
+		}
+		if(armor != null) {
+			dmg -= armor.getDamageDoneReduction();
+		}
+		if(dmg<=0) {
+			dmg=0;
+		}
+		
+		//System.out.println(name + " inflict " + dmg + " damages");
+		
+		return dmg;
+	}
+	
+	public Weapon getWeapon () {
+		return weapon;
+	}
+	
+	public Armor getArmor () {
+		return armor;
+	}
+	
+	public Shield getShield () {
+		return shield;
 	}
 }

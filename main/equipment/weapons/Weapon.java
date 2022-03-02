@@ -4,7 +4,7 @@ import equipment.Equipment;
 
 public abstract class Weapon implements Equipment {
 
-	int dmg;
+	int dmg,hitCount;
 	boolean canBreakShield=false;
 	String equimentType = "Weapon";
 	String name;
@@ -35,5 +35,11 @@ public abstract class Weapon implements Equipment {
 	
 	public void setCanBreakShield (boolean canBreakShield) {
 		this.canBreakShield=canBreakShield;
+	}
+	
+	/** record the number of blows delivered by the weapon */
+	public void hit() {
+		hitCount++;
+		
 	}
 }

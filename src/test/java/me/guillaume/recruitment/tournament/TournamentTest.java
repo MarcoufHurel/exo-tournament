@@ -3,6 +3,7 @@ package me.guillaume.recruitment.tournament;
 
 import org.junit.jupiter.api.Test;
 
+import tournament.Highlander;
 import tournament.Swordsman;
 import tournament.Viking;
 

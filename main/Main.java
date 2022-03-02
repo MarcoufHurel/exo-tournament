@@ -1,19 +1,20 @@
+import tournament.Highlander;
 import tournament.Swordsman;
 import tournament.Viking;
 
 public class Main {
 	public static void main(String[] args) {
-		Swordsman swordsman = new Swordsman()
-                .equip("buckler");
+		 Highlander highlander = new Highlander();
 
-        Viking viking = new Viking()
-                .equip("buckler");
+	        Swordsman swordsman = new Swordsman()
+	                .equip("buckler")
+	                .equip("armor");
 
-        swordsman.engage(viking);
+	        swordsman.engage(highlander);
 
         
         System.out.println("Fighter "+ swordsman.getName() + " hp " + swordsman.hitPoints());
-        System.out.println("Fighter "+ viking.getName() + " hp " + viking.hitPoints());
+        System.out.println("Fighter "+ highlander.getName() + " hp " + highlander.hitPoints());
 	}
 
 }
